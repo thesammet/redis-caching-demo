@@ -23,8 +23,8 @@ client.on('error', (error) => {
   console.error('Redis connection error:', error);
 });
 
-app.get('/get-posts/:postitem', async (req, res) => {
-  const postItem = req.params.postitem;
+app.get('/get-posts/:post_item', async (req, res) => {
+  const postItem = req.params.post_item;
 
   try {
     client.get(postItem, async (err, post) => {
@@ -59,6 +59,33 @@ app.get('/get-posts/:postitem', async (req, res) => {
     });
   }
 });
+
+app.patch('/update-post/:post_item', async (req, res) => {
+  const postItem = req.params.post_item
+
+  try {
+    // assume that there is an update of post item 
+    // redis have 2 invalidation system on core. 
+    // First one expiration, we already set the get-posts method using client.setex
+    // The second one is make an invalidation on data
+
+    // assume that we have a updatePost() function to change post data
+    // now we must invalidate the key which giving on setex for not giving the old data from cache
+
+    // The first method is delete the key of post data using post item id
+    client.del(postItem);
+
+    // Or we can update the key of recent data's key
+    /*  client.set('anahtar', 'yeniveri'); */
+
+  } catch (error) {
+    return res.status(500).send({
+      message: error.toString(),
+      error: true,
+      data: null
+    });
+  }
+})
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
