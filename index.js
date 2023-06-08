@@ -74,7 +74,7 @@ app.patch('/update-post/:post_item', async (req, res) => {
     client.del(postItem);
 
     // Or we can update the key of recent data's key
-    /*  client.set('anahtar', 'yeniveri'); */
+    /*  client.set('key', 'value'); */
 
     // Conclusion the old data which have the same id will be updated.
 
