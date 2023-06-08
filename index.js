@@ -28,8 +28,6 @@ app.get('/get-posts/:post_item', async (req, res) => {
 
   try {
     client.get(postItem, async (err, post) => {
-      console.log(post)
-
       if (post) {
         res.status(200).send({
           error: false,
@@ -77,6 +75,8 @@ app.patch('/update-post/:post_item', async (req, res) => {
 
     // Or we can update the key of recent data's key
     /*  client.set('anahtar', 'yeniveri'); */
+
+    // Conclusion the old data which have the same id will be updated.
 
   } catch (error) {
     return res.status(500).send({
