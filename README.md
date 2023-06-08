@@ -5,6 +5,9 @@ This project is a Node.js application that showcases the usage of Redis caching.
 ## Overview
 The project utilizes Redis, an in-memory data store, as a caching layer to improve the performance of a Node.js application. By caching frequently accessed data in Redis, the application can retrieve the data from memory instead of making expensive database or API calls. This can significantly reduce the response time and improve the overall performance of the application.
 
+![High Latency from server](screenshots/high_latency.png)
+![Low Latency from cache](screenshots/low_latency.png)
+
 ## Installation
 To run this project locally, make sure you have the following software installed:
 
